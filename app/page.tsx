@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Zap, BarChart3, Shield } from "lucide-react"
+import { Users, Spade, BarChart3, Shield } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -58,7 +58,7 @@ export default function HomePage() {
 
             <Card>
               <CardHeader>
-                <Zap className="w-8 h-8 text-red-600 mb-2" />
+                <Spade className="w-8 h-8 text-red-600 mb-2" />
                 <CardTitle>Multiple Card Sets</CardTitle>
               </CardHeader>
               <CardContent>

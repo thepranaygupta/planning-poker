@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Zap } from "lucide-react"
+import { Menu, X, Spade } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export default function Header() {
@@ -22,13 +22,13 @@ export default function Header() {
           {/* Logo and Brand */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex items-center justify-center w-8 h-8 bg-red-600 rounded-lg">
-              <Zap className="w-5 h-5 text-white" />
+              <Spade className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-gray-900">Planning Poker</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          {/* <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -38,7 +38,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-          </nav>
+          </nav> */}
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">

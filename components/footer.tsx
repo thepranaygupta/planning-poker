@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Zap, ExternalLink } from "lucide-react"
+import { Spade, ExternalLink } from "lucide-react"
 
 export default function Footer() {
   const navLinks = [
@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <div className="flex items-center justify-center w-8 h-8 bg-red-600 rounded-lg">
-                <Zap className="w-5 h-5 text-white" />
+                <Spade className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold">Planning Poker</span>
             </Link>

@@ -276,7 +276,7 @@ export default function SessionPage() {
         console.log("Subscription status:", status, err)
         if (status === "SUBSCRIBED") {
           console.log("✅ Successfully subscribed to real-time updates")
-          showToast.success("🔄 Connected to real-time updates")
+          // showToast.success("🔄 Connected to real-time updates")
         } else if (status === "CHANNEL_ERROR") {
           console.error("❌ Channel error:", err)
           showToast.error("❌ Real-time connection failed")
@@ -293,8 +293,6 @@ export default function SessionPage() {
       supabase.removeChannel(channel)
     }
   }, [sessionId, userName, checkingUser])
-
-  // Remove the separate effect for estimate clearing as it's now handled in the main subscription
 
   const currentUser = users.find((u) => u.name === userName)
   const isCreator = currentUser?.is_creator || false
@@ -313,13 +311,57 @@ export default function SessionPage() {
     setSelectedCard(value)
 
     try {
-      const { error } = await supabase.from("estimates").upsert({
-        session_id: sessionId,
-        user_name: userName,
-        estimate: value,
-      })
+      // Use a more explicit upsert with proper conflict resolution
+      const { data, error } = await supabase
+        .from("estimates")
+        .upsert(
+          {
+            session_id: sessionId,
+            user_name: userName,
+            estimate: value,
+            updated_at: new Date().toISOString(),
+          },
+          {
+            onConflict: "session_id,user_name",
+            ignoreDuplicates: false,
+          },
+        )
+        .select()
 
-      if (error) throw error
+      if (error) {
+        console.error("Upsert error:", error)
+
+        // If upsert fails, try update first, then insert
+        const { data: existingEstimate } = await supabase
+          .from("estimates")
+          .select("id")
+          .eq("session_id", sessionId)
+          .eq("user_name", userName)
+          .single()
+
+        if (existingEstimate) {
+          // Update existing estimate
+          const { error: updateError } = await supabase
+            .from("estimates")
+            .update({
+              estimate: value,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("session_id", sessionId)
+            .eq("user_name", userName)
+
+          if (updateError) throw updateError
+        } else {
+          // Insert new estimate
+          const { error: insertError } = await supabase.from("estimates").insert({
+            session_id: sessionId,
+            user_name: userName,
+            estimate: value,
+          })
+
+          if (insertError) throw insertError
+        }
+      }
 
       // Show appropriate toast message
       if (previousCard && previousCard !== value) {
@@ -484,9 +526,13 @@ export default function SessionPage() {
                       />
                     ))}
                   </div>
-                  {session.cards_revealed && (
+                  {session.cards_revealed ? (
                     <p className="text-sm text-gray-500 mt-4">
                       Cards are revealed. Wait for the next round to make new estimates.
+                    </p>
+                  ) : (
+                    <p className="text-sm text-blue-600 mt-4">
+                      💡 You can change your estimate anytime before cards are revealed.
                     </p>
                   )}
                 </CardContent>
