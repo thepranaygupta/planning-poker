@@ -29,6 +29,15 @@ export default function Header() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <Link
+              href="https://www.producthunt.com/products/planning-poker-5?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-planning&#0045;poker&#0045;5"
+              target="_blank">
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=988568&theme=light&t=1751742584238"
+                alt="Planning Poker - Estimate Story Points, Achieve Consensus | Product Hunt"
+                className="w-40 h-14"
+              />
+            </Link>
             <Link href="/join">
               <Button variant="outline" size="sm">
                 Join Session
