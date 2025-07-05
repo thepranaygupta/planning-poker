@@ -26,15 +26,16 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-1 text-sm text-gray-400">
               <span>Built by</span>
-              <a
+              <Link
                 href="https://pranaygupta.in"
                 target="_blank"
+                prefetch
                 rel="noopener noreferrer"
                 className="text-red-400 hover:text-red-300 font-medium inline-flex items-center space-x-1 transition-colors"
               >
                 <span>Pranay Gupta</span>
                 <ExternalLink className="w-3 h-3" />
-              </a>
+              </Link>
             </div>
           </div>
 

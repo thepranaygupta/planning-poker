@@ -27,7 +27,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="min-h-screen flex flex-col">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 bg-gray-50">{children}</main>
             <Footer />
           </div>
           <Toaster />
