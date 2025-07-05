@@ -141,7 +141,7 @@ export default function UserEstimatesTable({
         </div>
       </div>
 
-      {cardsRevealed && getRevealedEstimates().length > 0 && (
+      {/* {cardsRevealed && getRevealedEstimates().length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export default function UserEstimatesTable({
             Based on {getRevealedEstimates().filter((e) => e !== "?" && !isNaN(Number(e))).length} numeric estimates
           </div>
         </motion.div>
-      )}
+      )} */}
 
       {!cardsRevealed && estimates.length > 0 && (
         <motion.div

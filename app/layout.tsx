@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description:
     "A collaborative planning poker tool for agile teams to estimate story points and reach consensus on project tasks.",
   keywords: "planning poker, agile, scrum, estimation, story points, fibonacci",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

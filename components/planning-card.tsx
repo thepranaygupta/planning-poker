@@ -44,7 +44,7 @@ export default function PlanningCard({ value, isSelected, onClick, disabled }: P
 
       {disabled && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-lg">
-          <span className="text-xs text-gray-600 font-medium">Locked</span>
+          <span className="text-xs absolute bottom-5 text-gray-600 font-medium">Locked</span>
         </div>
       )}
     </motion.div>

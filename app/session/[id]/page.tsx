@@ -17,6 +17,7 @@ import {
 import PlanningCard from "@/components/planning-card"
 import UserEstimatesTable from "@/components/user-estimates-table"
 import { Eye, EyeOff, RotateCcw, Copy, Share2 } from "lucide-react"
+import EstimateDistributionChart from "@/components/estimate-distribution-chart"
 
 export default function SessionPage() {
   const params = useParams()
@@ -537,6 +538,9 @@ export default function SessionPage() {
                   )}
                 </CardContent>
               </Card>
+
+              {/* Estimate Distribution Chart - Only shown when cards are revealed */}
+              <EstimateDistributionChart estimates={estimates} cardsRevealed={session.cards_revealed} />
             </div>
 
             {/* Users Section */}
